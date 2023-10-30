@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "8289602886",
+    "project_id": "treep-c03a3",
+    "storage_bucket": "treep-c03a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8289602886:android:5015466552fc1630df2947",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAptO14GC2q74aGq1hrdvkNHPjqZ3FHJYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
