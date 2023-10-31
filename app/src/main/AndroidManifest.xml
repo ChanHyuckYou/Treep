@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
+
+
         android:networkSecurityConfig="@xml/network_security_config"
 
         android:allowBackup="true"
@@ -16,6 +20,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.kakao.vectormap.APP_KEY"
+            android:value="0e22b0c0a249fcdfc0683fb1afdcbe52"/>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -27,6 +35,8 @@
         </activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".MainActivity"/>
+        <activity android:name=".SettingActivity"/>
+        <activity android:name=".KakaoActivity"/>
 
     </application>
 

@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mEmailLoginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -157,4 +156,6 @@ public class LoginActivity extends AppCompatActivity {
     private void showProgress(boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+
 }

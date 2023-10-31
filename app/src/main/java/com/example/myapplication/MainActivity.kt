@@ -9,7 +9,7 @@ import com.example.myapplication.databinding.ActivityJoinBinding
 import com.example.myapplication.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+public class MainActivity : AppCompatActivity() {
 
     lateinit var  binding : ActivityMainBinding
 
@@ -26,6 +26,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 }

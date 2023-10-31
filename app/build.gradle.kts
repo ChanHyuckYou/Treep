@@ -46,6 +46,7 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.2")
     implementation ("com.squareup.retrofit2:converter-gson:2.4.0")
     implementation("androidx.core:core-ktx:1.8.0")
+    implementation ("com.kakao.maps.open:android:2.6.0")
 
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
@@ -18,11 +20,20 @@
         <ImageView
             android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO" />
+
+        <ImageButton
+            android:id="@+id/setting_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting"
+            android:contentDescription="TODO" />
 
         <Button
             android:id="@+id/logout_button"
             android:text="로그아웃"
+            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
