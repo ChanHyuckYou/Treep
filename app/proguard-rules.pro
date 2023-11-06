@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.kakao.vectormap.** { *; }
+-keep interface com.kakao.vectormap.**
+
+-keep public class com.nhn.android.naverlogin.** {
+    public protected *;
+}

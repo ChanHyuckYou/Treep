@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.libsDirectory
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -42,21 +44,34 @@ android {
 }
 
 dependencies {
-    implementation ("com.squareup.retrofit2:retrofit:2.5.0")
-    implementation ("com.google.code.gson:gson:2.8.2")
-    implementation ("com.squareup.retrofit2:converter-gson:2.4.0")
-    implementation("androidx.core:core-ktx:1.8.0")
+
+    //kakao Map
     implementation ("com.kakao.maps.open:android:2.6.0")
 
+    //firebase Auth import
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth")
 
+    implementation ("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation ("com.google.code.gson:gson:2.8.2")
+    implementation ("com.squareup.retrofit2:converter-gson:2.4.0")
+    implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat-resources:1.6.1")
     implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.2.0")
+
+    //kakao SDK
     testImplementation("junit:junit:4.13.2")
+
+    //naverLogin Connect
+    implementation("com.navercorp.nid:oauth-jdk8:5.8.0") // jdk 8
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+
+
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

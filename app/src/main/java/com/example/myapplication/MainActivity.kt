@@ -13,6 +13,7 @@ public class MainActivity : AppCompatActivity() {
 
     lateinit var  binding : ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,6 +25,12 @@ public class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+
+        val button2 : Button = findViewById(R.id.kakaoMap)
+        button2.setOnClickListener {
+            val kakaointent = Intent(this, KakaoActivity::class.java)
+            startActivity(kakaointent)
         }
     }
 }
