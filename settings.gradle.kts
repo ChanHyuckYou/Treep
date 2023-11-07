@@ -9,7 +9,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        maven { setUrl("https://devrepo.kakao.com/nexus/repository/kakaomap-releases/") }
+        maven { url = uri("https://devrepo.kakao.com/nexus/repository/kakaomap-releases/") }
         mavenCentral()
 
     }

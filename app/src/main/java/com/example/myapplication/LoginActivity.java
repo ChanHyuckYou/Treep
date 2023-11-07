@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.ServiceApi;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.navercorp.nid.oauth.NidOAuthLogin;
+import com.navercorp.nid.oauth.view.NidOAuthLoginButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +36,11 @@ public class LoginActivity extends AppCompatActivity {
     private ServiceApi service;
 
     private FirebaseAuth mAuth;
-
+    private static String OAUTH_CLIENT_ID = "5PUJtf4KppIyLiTTS5cE";
+    private static String OAUTH_CLIENT_SECRET = "9tTPsNdBRR";
+    private static String OAUTH_CLIENT_NAME = "test";
+    private static NidOAuthLogin NidmOAuthLoginInstance;
+    private static Context mContext;
 
     public void onStart() {
         super.onStart();
@@ -57,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         mEmailLoginButton = (Button) findViewById(R.id.login_button);
         mJoinButton = (Button) findViewById(R.id.join_button);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
+        mContext = this;
+        initData();
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -76,6 +85,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initData() {
+        NidmOAuthLoginInstance = NidOAuthLogin.getInstance();
+        NidmOAuthLoginInstance.init(mContext, OAUTH_CLIENT_ID, OAUTH_CLIENT_NAME, OAUTH_CLIENT_SECRET);
+
+        NidmOAuthLoginButton = (NidOAuthLoginButton)
+                findViewById(R.id.buttonOAuthLoginImg);
+        NidmOAuthLoginButton.setNidOAuthLoginHandler(NidmOAuthLoginHandler)
+    }
+
+    private NidOAuthLoginHandler NidmOAuthLoginHandler = new NidOAuthLoginHandler() {
+
     }
 
 
