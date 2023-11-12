@@ -4,10 +4,22 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5277E8"
+        android:gravity="center"
+        android:text="지도"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"/>
+
     <com.kakao.vectormap.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:apiKey="0e22b0c0a249fcdfc0683fb1afdcbe52">
 
     </com.kakao.vectormap.MapView>

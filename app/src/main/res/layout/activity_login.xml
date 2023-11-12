@@ -11,8 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:background="#000000"
-        android:backgroundTint="#000000"
+        android:background="#5277E8"
         android:orientation="vertical">
 
         <TextView
@@ -94,11 +93,6 @@
                 android:text="로그인"
                 android:textStyle="bold" />
 
-            <com.navercorp.nid.oauth.view.NidOAuthLoginButton
-                android:id="@+id/buttonOAuthLoginImg"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp" />
 
 
             <LinearLayout
@@ -134,8 +128,27 @@
                 android:insetLeft="0dp"
                 android:text="계정이 없으신가요?"
                 android:textStyle="bold" />
+            <com.navercorp.nid.oauth.view.NidOAuthLoginButton
+                android:id="@+id/buttonOAuthLoginImg"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp" />
+
+
+            <ImageButton
+                android:id="@+id/kakao_authbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/kakao_login_medium_narrow" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_authbtn"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp" />
 
 
         </LinearLayout>
+
     </ScrollView>
 </FrameLayout>

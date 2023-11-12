@@ -45,13 +45,17 @@ android {
 
 dependencies {
 
-    //kakao Map
+    //kakao
     implementation ("com.kakao.maps.open:android:2.6.0")
+    implementation ("com.kakao.sdk:v2-all:2.17.0") // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation ("com.kakao.sdk:v2-user:2.17.0") // 카카오 로그인
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
 
     //firebase Auth import
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     implementation ("com.squareup.retrofit2:retrofit:2.5.0")
     implementation ("com.google.code.gson:gson:2.8.2")
@@ -66,6 +70,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 
     //naverLogin Connect
+
     implementation("com.navercorp.nid:oauth-jdk8:5.8.0") // jdk 8
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 

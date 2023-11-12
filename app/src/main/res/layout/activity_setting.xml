@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SettingActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,17 +17,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="58dp"
+                android:background="#5277E8"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/text_view_id"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Treep"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="설정"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -36,52 +41,75 @@
 
                 <Button
                     android:id="@+id/logout_b"
-                    style="@style/Widget.Material3.Button"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="로그아웃" />
+                    android:backgroundTint="#FFFFFF"
+                    android:text="로그아웃"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/usersetting_b"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="계정설정" />
+                    android:text="계정설정"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/notification_b"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="알림설정" />
+                    android:text="알림설정"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/button6"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/button7"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/button8"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/button9"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/button3"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="#000000" />
             </LinearLayout>
 
         </LinearLayout>

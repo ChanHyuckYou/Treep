@@ -10,8 +10,11 @@
     <LinearLayout
         android:layout_width="411dp"
         android:layout_height="59dp"
-        android:background="#0C0A0A"
-        android:backgroundTint="#000000">
+        android:background="#5277E8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/top"
@@ -19,7 +22,7 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:text="회원가입"
-            android:textColor="#FFFCFC"
+            android:textColor="#FFFFFF"
             android:textSize="34sp" />
     </LinearLayout>
 

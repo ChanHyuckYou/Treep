@@ -22,6 +22,10 @@
 
 -keep class com.kakao.vectormap.** { *; }
 -keep interface com.kakao.vectormap.**
+# https://github.com/square/okhttp/pull/6792
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.*
+-dontwarn org.openjsse.**
 
 -keep public class com.nhn.android.naverlogin.** {
     public protected *;

@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.FontsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -12,60 +14,71 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.myapplication.Auth.KaKaoAuthViewModel;
 import com.example.myapplication.data.LoginData;
 import com.example.myapplication.data.LoginResponse;
+import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.ServiceApi;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.navercorp.nid.oauth.NidOAuthLogin;
-import com.navercorp.nid.oauth.view.NidOAuthLoginButton;
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.User;
 
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private Button mEmailLoginButton;
     private Button mJoinButton;
+   // private Button mNaverButton;
     private ProgressBar mProgressView;
     private ServiceApi service;
-
     private FirebaseAuth mAuth;
     private static String OAUTH_CLIENT_ID = "5PUJtf4KppIyLiTTS5cE";
     private static String OAUTH_CLIENT_SECRET = "9tTPsNdBRR";
     private static String OAUTH_CLIENT_NAME = "test";
-    private static NidOAuthLogin NidmOAuthLoginInstance;
-    private static Context mContext;
 
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        // updateUI(currentUser);
-        if(currentUser != null){
-            currentUser.reload();
-        }
 
-    }
+    private Button mkakao_authbtn;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        //updateKakaoLoginUi();
+
+        mAuth = FirebaseAuth.getInstance();
+       // mNaverButton = findViewById(R.id.buttonOAuthLoginImg);
+
+
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
         mPasswordView = (EditText) findViewById(R.id.login_password);
         mEmailLoginButton = (Button) findViewById(R.id.login_button);
         mJoinButton = (Button) findViewById(R.id.join_button);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
-        mContext = this;
-        initData();
+
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -74,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+
+
+
             }
         });
 
@@ -85,20 +101,46 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        mkakao_authbtn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+//                    UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
+//                        @Override
+//                        public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+//                            if (oAuthToken != null) {
+//
+//                            }
+//                            if (throwable != null) {
+//
+//                            }
+//                            //updateKakaoLoginUi();
+//                            return null;
+//                        }
+//                    });
+//                } else {
+//                    UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
+//                        @Override
+//                        public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+//                            if (oAuthToken != null) {
+//
+//                            }
+//                            if (throwable != null) {
+//
+//                            }
+//                            //updateKakaoLoginUi();
+//                            return null;
+//                        }
+//                    });
+//                }
+//            }
+//        });
+
+
     }
 
-    private void initData() {
-        NidmOAuthLoginInstance = NidOAuthLogin.getInstance();
-        NidmOAuthLoginInstance.init(mContext, OAUTH_CLIENT_ID, OAUTH_CLIENT_NAME, OAUTH_CLIENT_SECRET);
 
-        NidmOAuthLoginButton = (NidOAuthLoginButton)
-                findViewById(R.id.buttonOAuthLoginImg);
-        NidmOAuthLoginButton.setNidOAuthLoginHandler(NidmOAuthLoginHandler)
-    }
 
-    private NidOAuthLoginHandler NidmOAuthLoginHandler = new NidOAuthLoginHandler() {
-
-    }
 
 
     private void attemptLogin() {
@@ -107,6 +149,18 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+
+                }
+            }
+        });
 
         boolean cancel = false;
         View focusView = null;
@@ -183,6 +237,29 @@ public class LoginActivity extends AppCompatActivity {
     private void showProgress(boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+//    private void updateKakaoLoginUi() {
+//        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+//            @Override
+//            public Unit invoke(User user, Throwable throwable) {
+//                if (user != null ){
+//                    Log.i(TAG, "invoke: id=" + user.getId());
+//                    assert user.getKakaoAccount() != null;
+//                    Log.i(TAG, "invoke: email=" + user.getKakaoAccount().getEmail());
+//                    Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());
+//                    Log.i(TAG, "invoke: gender=" + user.getKakaoAccount().getGender());
+//                    Log.i(TAG, "invoke: age=" + user.getKakaoAccount().getAgeRange());
+//
+//
+//                    //Glide.with(binding.profile).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(binding.profile);
+//
+//
+//                }
+//                return null;
+//            }
+//        });
+//    }
+
 
 
 }

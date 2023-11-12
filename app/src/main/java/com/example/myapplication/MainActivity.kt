@@ -1,17 +1,20 @@
 package com.example.myapplication
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.databinding.ActivityJoinBinding
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.kakao.KakaoActivity
+import com.kakao.sdk.user.UserApiClient
 
 
 public class MainActivity : AppCompatActivity() {
 
     lateinit var  binding : ActivityMainBinding
+    private val TAG = "MainActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +24,17 @@ public class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val button : Button = findViewById(R.id.logout_button)
         button.setOnClickListener {
+            UserApiClient.instance.logout { error ->
+                if (error != null) {
+                    Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+                }
+                else {
+                    Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
+                }
+            }
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
@@ -31,6 +43,12 @@ public class MainActivity : AppCompatActivity() {
         button2.setOnClickListener {
             val kakaointent = Intent(this, KakaoActivity::class.java)
             startActivity(kakaointent)
+        }
+
+        val settingbutton : ImageButton = findViewById(R.id.setting_button)
+        settingbutton.setOnClickListener {
+            val settingintent = Intent(this, SettingActivity::class.java)
+            startActivity(settingintent)
         }
     }
 }

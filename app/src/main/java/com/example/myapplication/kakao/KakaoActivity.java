@@ -1,13 +1,17 @@
-package com.example.myapplication;
+package com.example.myapplication.kakao;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
 import com.kakao.vectormap.KakaoMap;
 import com.kakao.vectormap.KakaoMapReadyCallback;
+import com.kakao.vectormap.LatLng;
 import com.kakao.vectormap.MapLifeCycleCallback;
+import com.kakao.vectormap.MapType;
 import com.kakao.vectormap.MapView;
+import com.kakao.vectormap.MapViewInfo;
 
 public class KakaoActivity extends AppCompatActivity {
     private MapView mapView;
@@ -16,11 +20,13 @@ public class KakaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakaomap);
         mapView = findViewById(R.id.map_view);
+
         mapView.start(new MapLifeCycleCallback() {
             @Override
             public void onMapDestroy() {
                 // 지도 API 가 정상적으로 종료될 때 호출됨
             }
+
 
             @Override
             public void onMapError(Exception error) {
@@ -32,6 +38,10 @@ public class KakaoActivity extends AppCompatActivity {
                 // 인증 후 API 가 정상적으로 실행될 때 호출됨
             }
         });
+
+
+
+
 
     }
 }
