@@ -1,5 +1,7 @@
 package com.example.myapplication.data;
 
+import android.widget.Toast;
+
 import com.google.gson.annotations.SerializedName;
 
 public class JoinData {
@@ -24,5 +26,6 @@ public class JoinData {
         this.userPwd = userPwd;
         this.userBirth = userBirth;
         this.userNick = userNick;
+
     }
 }

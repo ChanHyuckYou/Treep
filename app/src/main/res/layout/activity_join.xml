@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="411dp"
         android:layout_height="59dp"
-        android:background="#5277E8"
+        android:background="@color/treep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

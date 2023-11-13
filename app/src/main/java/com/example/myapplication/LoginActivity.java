@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     private static String OAUTH_CLIENT_NAME = "test";
 
 
-    private Button mkakao_authbtn;
+    private ImageButton mkakao_authbtn;
 
 
 
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmailLoginButton = (Button) findViewById(R.id.login_button);
         mJoinButton = (Button) findViewById(R.id.join_button);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
+        mkakao_authbtn = (ImageButton) findViewById(R.id.kakao_authbtn);
 
 
         service = RetrofitClient.getClient().create(ServiceApi.class);

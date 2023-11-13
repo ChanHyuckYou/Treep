@@ -21,6 +21,13 @@
             android:name="com.kakao.vectormap.APP_KEY"
             android:value="0e22b0c0a249fcdfc0683fb1afdcbe52"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCFNhtlTOx9Zn6iCr9W9Pk631EgsUgOESQ" />
+
+
+
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
