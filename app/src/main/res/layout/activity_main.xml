@@ -8,19 +8,41 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         android:layout_margin="16dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/setting_button"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Treep"
+            android:textSize="34sp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            android:contentDescription="TODO"
-            android:src="@drawable/setting" />
+            <Button
+                android:id="@+id/kakaoMap"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="#D3BE06"
+                android:text="카카오 맵 가기" />
+
+            <ImageButton
+                android:id="@+id/setting_button"
+                android:layout_width="50dp"
+                android:layout_height="53dp"
+                android:layout_gravity="right"
+                android:contentDescription="TODO"
+                android:src="@drawable/setting" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -28,23 +50,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
+        android:gravity="bottom"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/logout_button"
-            style="@style/Widget.Material3.Button"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:backgroundTint="#353030"
+            android:backgroundTint="#FF0000"
             android:text="로그아웃" />
-
-        <Button
-            android:id="@+id/kakaoMap"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="카카오 맵 가기" />
     </LinearLayout>
 
 </LinearLayout>
