@@ -55,12 +55,13 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/login_email"
+                    style="@style/Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:hint="이메일을 입력하세요."
                     android:inputType="textEmailAddress"
-                    android:paddingLeft="13dp"
 
+                    android:paddingLeft="13dp"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,12 +72,13 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/login_password"
+                    style="@style/Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:hint="비밀번호를 입력하세요."
+
+
                     android:inputType="textPassword"
-
-
                     android:paddingLeft="13dp"
                     android:singleLine="true" />
 

@@ -41,7 +41,7 @@ public class MainActivity : AppCompatActivity() {
 
         val button2 : Button = findViewById(R.id.kakaoMap)
         button2.setOnClickListener {
-            val kakaointent = Intent(this, KakaoActivity::class.java)
+            val kakaointent = Intent(this, SearchActivity::class.java)
             startActivity(kakaointent)
         }
 

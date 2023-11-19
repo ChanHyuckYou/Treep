@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ImageButton mkakao_authbtn;
 
+    private final String context = "LoginActivity";
+
 
 
 
@@ -104,39 +106,26 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        mkakao_authbtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
-//                    UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
-//                        @Override
-//                        public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-//                            if (oAuthToken != null) {
-//
-//                            }
-//                            if (throwable != null) {
-//
-//                            }
-//                            //updateKakaoLoginUi();
-//                            return null;
-//                        }
-//                    });
-//                } else {
-//                    UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
-//                        @Override
-//                        public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-//                            if (oAuthToken != null) {
-//
-//                            }
-//                            if (throwable != null) {
-//
-//                            }
-//                            //updateKakaoLoginUi();
-//                            return null;
-//                        }
-//                    });
-//                }
-//            }
-//        });
+        Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+            @Override
+            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+                updateKakaoLoginUi();
+                return null;
+            }
+        };
+
+
+        mkakao_authbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if( UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+                    UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, callback);
+                }else {
+                    UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, callback);
+                }
+            }
+        });
+
+
 
 
     }
@@ -240,27 +229,29 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-//    private void updateKakaoLoginUi() {
-//        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-//            @Override
-//            public Unit invoke(User user, Throwable throwable) {
-//                if (user != null ){
-//                    Log.i(TAG, "invoke: id=" + user.getId());
-//                    assert user.getKakaoAccount() != null;
-//                    Log.i(TAG, "invoke: email=" + user.getKakaoAccount().getEmail());
-//                    Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());
-//                    Log.i(TAG, "invoke: gender=" + user.getKakaoAccount().getGender());
-//                    Log.i(TAG, "invoke: age=" + user.getKakaoAccount().getAgeRange());
-//
-//
-//                    //Glide.with(binding.profile).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(binding.profile);
-//
-//
-//                }
-//                return null;
-//            }
-//        });
-//    }
+    private void updateKakaoLoginUi() {
+        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(User user, Throwable throwable) {
+                if (user != null ){
+                    Log.i(TAG, "invoke: id=" + user.getId());
+                    assert user.getKakaoAccount() != null;
+                    Log.i(TAG, "invoke: email=" + user.getKakaoAccount().getEmail());
+                    Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());
+                    Log.i(TAG, "invoke: gender=" + user.getKakaoAccount().getGender());
+                    Log.i(TAG, "invoke: age=" + user.getKakaoAccount().getAgeRange());
+
+
+                    //Glide.with(binding.profile).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(binding.profile);
+
+
+                } else {
+                    Log.d(TAG, "Login Fallid");
+                }
+                return null;
+            }
+        });
+    }
 
 
 

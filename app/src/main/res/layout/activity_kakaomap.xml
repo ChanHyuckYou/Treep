@@ -2,27 +2,27 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".kakao.KakaoActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#5277E8"
-        android:gravity="center"
-        android:text="지도"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"/>
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#5277E8"-->
+<!--        android:gravity="center"-->
+<!--        android:text="지도"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="34sp"-->
+<!--        android:textStyle="bold" />-->
 
-    <com.kakao.vectormap.MapView
-        android:id="@+id/map_view"
+    <RelativeLayout
+        android:id="@+id/map_view11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:apiKey="0e22b0c0a249fcdfc0683fb1afdcbe52">
-
-    </com.kakao.vectormap.MapView>
+        android:apiKey="0e22b0c0a249fcdfc0683fb1afdcbe52"/>
 
     <!-- Other views or widgets can be added here within the RelativeLayout -->
 </RelativeLayout>
