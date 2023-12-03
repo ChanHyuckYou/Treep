@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocalInfoActivity">
+
+    <TextView
+        android:id="@+id/text_view_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#5277E8"
+        android:gravity="center"
+        android:text="여행 소개말"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <!-- in JEJU 텍스트를 contentContainer 밖으로 이동 -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="in JEJU!"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- 이미지 버튼과 해당 텍스트를 감싸는 LinearLayout -->
+            <LinearLayout
+                android:id="@+id/imageTextContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- 초기에는 감춰진 상태 -->
+
+                <!-- 이미지 버튼 -->
+
+                <ImageButton
+                    android:id="@+id/jejusogae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/jejumara" />
+
+                <!-- 텍스트 -->
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="마라도는 대한민국 최남단에 있는 섬이다. 송악산항에서 배를 타고 20분이면 도착한다. 전체 면적이 0.3㎢인 작은 섬에 30가구가 산다. \n섬 둘레를 따라 조성된 산책로를 걷다 보면 화산 지질의 해안가 풍경과 오랜 해풍의 영향으로 만들어진 기암절벽을 마주할 수 있다. 바다에 잠수해 해산물을 채취하는 해녀는 마라도와 뗄 수 없는 관계다. 현재 주민 50명 중 다섯 명이 해녀이다. 해녀는 바닷속에 산소공급 장치 없이 들어가 해조류와 조개류 캐는 일을 직업으로 삼는 여성이다. 이곳 해녀들은 마라도 특산물인 미역, 톳 등을 채취한다.\n떠나간 사람들을 애타게 기다리다 백골만 남은 애기업개를 기리기 위해 ‘애기업개당’이 만들어진 배경이다. 마라도 주민들과 관광객들이 소원을 빌거나 제를 지내는 이곳은 마라도를 방문한다면 꼭 들러야 할 곳이다."
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="펼치기"
+                android:visibility="visible"/>
+            <!-- 초기에 보이게 설정 -->
+
+            <TextView
+                android:id="@+id/view_moregone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="접기"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/black"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="in BUSAN!"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/imageTextContainer2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- 초기에는 감춰진 상태 -->
+
+                <!-- 이미지 버튼 -->
+                <ImageButton
+                    android:id="@+id/busansogae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/busansogae" />
+
+                <!-- 텍스트 -->
+                <TextView
+                    android:id="@+id/content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="약 350만 명의 인구가 거주하는 번화한 도시 부산 은 한반도의 남동쪽 끝에 자리 잡고 있습니다. 부산의 전체 면적은 769.89km²로 한반도 전체 육지의 0.8%에 불과합니다. 부산의 자연환경은 산, 강 그리고 바다가 조화롭게 어우러져 있는 것이 특징이며, 멋진 해변과 경치 좋은 절벽이 있는 해안선, 그리고 아름다운 전망을 감상할 수 있는 크고 작은 산이 도시 곳곳에 있습니다. 부산은 사계절이 뚜렷하고 온화한 기후로 너무 덥지도 춥지도 않습니다.  부산은 대한민국에서 두 번째로 큰 도시이자 대한민국 최초의 국제 항구 도시입니다. 깊은 항구와 온화한 조수로 인해 우리나라 컨테이너 물동량의 80% 이상을 처리하는 국내 최대의 컨테이너 처리 항구이자 세계 5대 항만도시로 발전하였습니다. 또한, 유라시아 대륙의 끝자락에 위치하여 한반도와 동북아시아 전체의 주요 관문 역할을 하고 있습니다.  부산광역시는 풍부한 천연자원과 유구한 역사 덕분에 세계적인 관광 및 문화의 도시로서 명성이 높아졌으며 국제 컨벤션의 명소로도 손꼽힙니다. 2001년 5월 23일 부산전시컨벤션센터(BEXCO)의 준공으로 국제회의 도시의 서막을 열게 되었으며, 2001년 12월 월드컵 조추첨, 2004년 9월 ITU총회 개최, 2005년 11월 아시아태평양정상회의(APEC) 개최 등으로 컨벤션 중심도시로 부상하게 되었습니다. 2014년 10월 ITU전권회의 개최, 12월 한·아세안 특별정상회의가 개최되어 부산의 이미지와 브랜드 가치를 드높여 세계도시로 발돋움하고 있습니다. 부산은 우리나라 제1의 항만·해양관광·영화·국제회의 중심도시로 자리매김하고 있으며, 이로써 부산은 21세기 동북아의 중추도시로 그 역할을 다하고 있습니다."
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_more2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="펼치기"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/view_moregone2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="접기"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/black"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="in GANGWON!"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/imageTextContainer3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- 초기에는 감춰진 상태 -->
+
+                <!-- 이미지 버튼 -->
+                <ImageButton
+                    android:id="@+id/gangwonsogae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/gangwonsogae" />
+
+                <!-- 텍스트 -->
+                <TextView
+                    android:id="@+id/content3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="강원도는 한반도 중앙부의 동편에 태백산맥(평균 높이는 1,00m)을 중심으로 영동과 영서로 크게 구분되어 있다. 동․서의 길이는 약 150㎞, 남․북은 약 243㎞에 달하며, 동쪽 면은 약 212㎞에 걸쳐 해안선을 이루고 있다. 서쪽은 황해도 신계․김천군, 경기도 연천․포천․가평․양평․여주 등 여러 군과 경계를 이루고 있으며, 남쪽은 충청북도 충주․제천시, 단양군 및 경상북도의 영주시, 봉화․울진군과 그리고 북쪽은 함경남도 안변․덕원군 및 황해도의 곡산군과 접해 있다."
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_more3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="펼치기"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/view_moregone3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="접기"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/black"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="in DAEJEON!"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/imageTextContainer4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- 초기에는 감춰진 상태 -->
+
+                <!-- 이미지 버튼 -->
+                <ImageButton
+                    android:id="@+id/daejeon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/daejeonsogae" />
+
+                <!-- 텍스트 -->
+                <TextView
+                    android:id="@+id/content4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="대전광역시는 한반도의 중남부에 위치해 있으며, 차령산맥과 소백산맥에 둘러싸여 분지를 이루고 있다. 동·서·남쪽에서 산지가 현저히 발달해 있고, 그 가운데를 유등천, 대전천, 갑천 등이 흐르면서 북쪽의 금강으로 흘러 들어가는데 그 주변에 넓은 평야가 형성되어 있다.\n지난 1995년 광역시로 개칭된 대전은 오는 2002년 월드컵축구대회 개최도시로 21세기 ‘위대한 대전, 긍지 높은 시민의 시대’를 여는 대장정을 향해 힘차게 전진하는 과학기술도시가 되고 있다."
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_more4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="펼치기"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/view_moregone4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="접기"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

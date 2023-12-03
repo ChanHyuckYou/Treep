@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.kakao.KakaoActivity
 import com.kakao.sdk.user.UserApiClient
 
 
@@ -49,6 +48,17 @@ public class MainActivity : AppCompatActivity() {
         settingbutton.setOnClickListener {
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(settingintent)
+        }
+
+        val LocalInfobtn : Button = findViewById(R.id.localinfobtn)
+        LocalInfobtn.setOnClickListener {
+            val Localinfointent = Intent(this, LocalInfoActivity::class.java)
+            startActivity(Localinfointent)
+        }
+        val NearbyRestaurants : Button = findViewById(R.id.NearbyRestaurants)
+        NearbyRestaurants.setOnClickListener {
+            val NearbyRestaurantsintent = Intent(this, NearbyRestaurantsActivity::class.java)
+            startActivity(NearbyRestaurantsintent)
         }
     }
 }

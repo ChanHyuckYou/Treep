@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinResponse;
+import com.example.myapplication.network.RestApiRetrofitClient;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.ServiceApi;
 
