@@ -60,8 +60,8 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginEnd="125dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginEnd="100dp"
                 android:layout_marginBottom="13dp"
                 android:text="올해의 여행지 List"
                 android:textSize="24sp"
@@ -76,7 +76,6 @@
                 style="@style/Widget.Material3.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:gravity="right"
                 android:text="더보기"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -149,7 +148,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/goingcafe"
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,7 +167,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/circleinlocal"
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

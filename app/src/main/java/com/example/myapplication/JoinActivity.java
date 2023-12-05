@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -10,14 +11,20 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinResponse;
-import com.example.myapplication.network.RestApiRetrofitClient;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.ServiceApi;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +56,7 @@ public class JoinActivity extends AppCompatActivity {
         mNickView = (EditText) findViewById(R.id.nick_name);
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
+        FirebaseApp.initializeApp(this);
 
         mJoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +110,26 @@ public class JoinActivity extends AppCompatActivity {
             focusView = mNameView;
             cancel = true;
         }
-
+        //생년월일 숫자만
+        if (Birth.isEmpty()) {
+            mBirth.setError("생년월일을 입력해주세요.");
+            focusView = mBirth;
+            cancel = true;
+        } else if (!TextUtils.isDigitsOnly(Birth)) {
+            mBirth.setError("숫자만 입력 가능합니다.");
+            focusView = mBirth;
+            cancel = true;
+        }
+        //닉네임 특수문자x
+        if (Nick.isEmpty()) {
+            mNickView.setError("닉네임을 입력해주세요.");
+            focusView = mNickView;
+            cancel = true;
+        } else if (!isNickValid(Nick)) {
+            mNickView.setError("특수 문자를 사용할 수 없습니다.");
+            focusView = mNickView;
+            cancel = true;
+        }
         if (cancel) {
             focusView.requestFocus();
         } else {
@@ -120,7 +147,9 @@ public class JoinActivity extends AppCompatActivity {
                 showProgress(false);
 
                 if (result.getCode() == 200) {
+                    sendEmailVerification();
                     finish();
+                } else {
                     Toast.makeText(JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -144,5 +173,26 @@ public class JoinActivity extends AppCompatActivity {
 
     private void showProgress(boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+    private boolean isNickValid(String nick) {
+        // 특수 문자가 포함되어 있지 않은지 확인하는 정규 표현식
+        String regex = "^[a-zA-Z0-9가-힣]*$";
+        return nick.matches(regex);
+    }
+    private void sendEmailVerification() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(JoinActivity.this, "이메일 인증 메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.e("이메일 인증 메일 전송 오류", task.getException().getMessage());
+                            }
+                        }
+                    });
+        }
     }
 }

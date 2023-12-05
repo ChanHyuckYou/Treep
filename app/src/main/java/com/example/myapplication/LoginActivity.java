@@ -17,17 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.data.LoginData;
 import com.example.myapplication.data.LoginResponse;
-import com.example.myapplication.network.RestApiRetrofitClient;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.ServiceApi;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
+
+import java.util.Objects;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
@@ -134,18 +132,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-
-                }
-            }
-        });
+        Log.d(TAG, "Email: " + email);
+        Log.d(TAG, "Password: " + password);
 
         boolean cancel = false;
         View focusView = null;
@@ -186,23 +174,40 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             //로그인 성공 시 기능
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse result = response.body();
-                //Toast 메시지 ( 로그인 성공. )
-                Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                showProgress(false);
-                //로그인 시 화면 전환
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    LoginResponse result = response.body();
+                    // Toast 메시지 ( 로그인 성공. )
+                    assert result != null;
+                    int resultCode = result.getCode();
+                    String message = result.getMessage();
+
+                    if (resultCode == 200) {
+                        // 로그인 성공
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        showProgress(false);
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // 로그인 실패 또는 다른 상태 코드
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        showProgress(false);
+                    }
+                } else {
+                    // HTTP 응답이 실패한 경우
+                    Log.e(TAG, "HTTP 응답 실패: " + response.code());
+                    showProgress(false);
+                }
             }
 
 
             //로그인 실패 시 기능
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 // 토스트 메시지
                 Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("로그인 에러 발생", t.getMessage());
+                Log.e("로그인 에러 발생", Objects.requireNonNull(t.getMessage()));
                 showProgress(false);
 
             }

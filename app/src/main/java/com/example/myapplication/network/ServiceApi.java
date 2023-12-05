@@ -1,5 +1,7 @@
 package com.example.myapplication.network;
 
+import com.example.myapplication.data.FindIdData;
+import com.example.myapplication.data.FindIdResponse;
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinResponse;
 import com.example.myapplication.data.LoginData;
@@ -16,5 +18,10 @@ public interface ServiceApi {
 
         @POST("/user/join")
         Call<JoinResponse> userJoin(@Body JoinData data);
+
+        @POST("/user/find-id")
+        Call<FindIdResponse> findUserId(@Body FindIdData data);
+
+
     }
 

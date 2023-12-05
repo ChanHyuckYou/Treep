@@ -40,7 +40,7 @@ public class MainActivity : AppCompatActivity() {
 
         val button2 : Button = findViewById(R.id.kakaoMap)
         button2.setOnClickListener {
-            val kakaointent = Intent(this, SearchActivity::class.java)
+            val kakaointent = Intent(this, DaumMapActivity::class.java)
             startActivity(kakaointent)
         }
 
@@ -59,6 +59,16 @@ public class MainActivity : AppCompatActivity() {
         NearbyRestaurants.setOnClickListener {
             val NearbyRestaurantsintent = Intent(this, NearbyRestaurantsActivity::class.java)
             startActivity(NearbyRestaurantsintent)
+        }
+        val circleinlocal : Button = findViewById(R.id.circleinlocal)
+        circleinlocal.setOnClickListener {
+            val circleinlocalintent = Intent(this, SearchActivity::class.java)
+            startActivity(circleinlocalintent)
+        }
+        val goingcafebtn : Button = findViewById(R.id.goingcafe)
+        goingcafebtn.setOnClickListener {
+            val goingcafeintent = Intent(this, LocalCafeActivity::class.java)
+            startActivity(goingcafeintent)
         }
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindIdActivity">
+
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="672dp"
+        android:background="@color/treep">
+
+        <TextView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="아이디찾기"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/email_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/login_email"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:hint="닉네임을 입력하시오"
+                android:inputType="textEmailAddress"
+
+                android:paddingLeft="13dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/login_password"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:hint="생년월일을 입력하시오."
+
+
+                android:inputType="textPassword"
+                android:paddingLeft="13dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</FrameLayout>

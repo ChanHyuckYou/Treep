@@ -6,9 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,8 +27,7 @@ import android.Manifest;
 import com.example.myapplication.kakao.ListAdapter;
 import com.example.myapplication.kakao.ListLayout;
 import com.example.myapplication.network.DaumRest;
-import com.example.myapplication.network.KakaoRest;
-import com.example.myapplication.network.RestApiRetrofitClient;
+import com.example.myapplication.network.KaKaoLocalRest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +35,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class NearbyRestaurantsActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
@@ -73,7 +67,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
 
 
     public NearbyRestaurantsActivity() {
-        RestApiRetrofitClient restClient = new RestApiRetrofitClient();
+        KaKaoLocalRest restClient = new KaKaoLocalRest();
         this.daumRestService = restClient.create();
         this.itemList = new ArrayList<>();
     }
@@ -96,7 +90,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
         itemList = new ArrayList<>();  // itemList을 적절한 데이터로 초기화
         adapter = new ListAdapter(itemList);
         recyclerView.setAdapter(adapter);
-        RestApiRetrofitClient.create();
+        KaKaoLocalRest.create();
 
         onCurrentLocationUpdate(mMapView, mMapView.getMapCenterPoint(), 0f);
 

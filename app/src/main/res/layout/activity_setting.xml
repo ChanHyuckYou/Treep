@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     tools:context=".SettingActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -53,8 +53,8 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="계정설정"
                     android:backgroundTint="#FFFFFF"
+                    android:text="계정설정"
                     android:textColor="#000000" />
 
                 <Button
@@ -62,17 +62,17 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="알림설정"
                     android:backgroundTint="#FFFFFF"
+                    android:text="알림설정"
                     android:textColor="#000000" />
 
                 <Button
-                    android:id="@+id/button6"
+                    android:id="@+id/circleinlocal"
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
                     android:backgroundTint="#FFFFFF"
+                    android:text="Button"
                     android:textColor="#000000" />
 
                 <Button
@@ -80,8 +80,8 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
                     android:backgroundTint="#FFFFFF"
+                    android:text="Button"
                     android:textColor="#000000" />
 
                 <Button
@@ -89,8 +89,8 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
                     android:backgroundTint="#FFFFFF"
+                    android:text="Button"
                     android:textColor="#000000" />
 
                 <Button
@@ -98,8 +98,8 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
                     android:backgroundTint="#FFFFFF"
+                    android:text="Button"
                     android:textColor="#000000" />
 
                 <Button
@@ -107,12 +107,29 @@
                     style="@style/Widget.Material3.Button.ElevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
                     android:backgroundTint="#FFFFFF"
+                    android:text="Button"
                     android:textColor="#000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/logout_button"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#FF0000"
+                        android:text="로그아웃" />
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

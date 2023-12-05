@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="3bnisjgacm" />
 
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
@@ -34,7 +37,7 @@
 
 
         <activity
-            android:name=".SearchActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,12 +58,14 @@
                     android:scheme="0e22b0c0a249fcdfc0683fb1afdcbe52" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".SearchActivity"/>-->
+        <activity android:name=".SearchActivity"/>
         <activity android:name=".JoinActivity" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".SettingActivity"/>
         <activity android:name=".NearbyRestaurantsActivity"/>
         <activity android:name=".LocalInfoActivity"/>
+        <activity android:name=".DaumMapActivity"/>
+        <activity android:name="LocalCafeActivity"/>
 <!--        <activity android:name=".kakao.KakaoActivity"/>-->
 
     </application>
