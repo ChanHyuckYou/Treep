@@ -1,6 +1,7 @@
 package com.example.myapplication.network
 
 import com.example.myapplication.ResultSearchKeyword
+import com.example.myapplication.kakao.WalkingRoute
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -18,5 +19,16 @@ interface KakaoRest {
 
     ): Call<ResultSearchKeyword>    // 받아온 정보가 ResultSearchKeyword 클래스의 구조로 담김
 
+    // Walking Route를 얻어오기 위한 API 호출
+    @GET("v2/local/geo/transcoord.json")
+    fun getWalkingRoute(
+        @Header("Authorization") key: String?,
+        @Query("x") startX: Double,
+        @Query("y") startY: Double,
+        @Query("destination_x") endX: Double,
+        @Query("destination_y") endY: Double,
+        @Query("output_coord") outputCoord: String?,
+        @Query("searchCoord") searchCoord: String?
+    ): Call<WalkingRoute?>?
 
 }

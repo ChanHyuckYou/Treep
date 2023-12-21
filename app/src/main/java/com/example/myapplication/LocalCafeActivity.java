@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.kakao.ListAdapter;
 import com.example.myapplication.kakao.ListLayout;
 import com.example.myapplication.network.DaumRest;
-import com.example.myapplication.network.KaKaoLocalRest;
+import com.example.myapplication.network.RestApiRetrofitClient;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -52,7 +54,7 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
     private MapView mMapView;
 
     private final String query = "카페";
-    private final int radius = 500;
+    private final int radius = 3000;
 
 
 
@@ -65,8 +67,8 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
 
 
     public void NearbyRestaurantsActivity() {
-        KaKaoLocalRest restClient = new KaKaoLocalRest();
-        this.daumRestService = KaKaoLocalRest.create();
+        RestApiRetrofitClient restClient = new RestApiRetrofitClient();
+        this.daumRestService = RestApiRetrofitClient.create();
         this.itemList = new ArrayList<>();
     }
 
@@ -83,16 +85,16 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
 
         recyclerView = findViewById(R.id.rv_list3);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        KaKaoLocalRest restClient = new KaKaoLocalRest();
-        daumRestService = KaKaoLocalRest.create();
+        RestApiRetrofitClient restClient = new RestApiRetrofitClient();
+        daumRestService = RestApiRetrofitClient.create();
 
         // itemList, adapter 초기화
         itemList = new ArrayList<>();  // itemList을 적절한 데이터로 초기화
         adapter = new ListAdapter(itemList);
         recyclerView.setAdapter(adapter);
-        KaKaoLocalRest.create();
+        RestApiRetrofitClient.create();
 
-        onCurrentLocationUpdate(mMapView, mMapView.getMapCenterPoint(), 0f);
+
 
 
 
@@ -100,21 +102,19 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
 
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
+            onCurrentLocationUpdate(mMapView, mMapView.getMapCenterPoint(), 0f);
         } else {
             checkRunTimePermission();
 
         }
+
+
         adapter.setItemClickListener(new ListAdapter.OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
-                double latitude = itemList.get(position).getY();
-                double longitude = itemList.get(position).getX();
 
-                MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
-                mMapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true);
             }
         });
-
     }
 
 
@@ -127,21 +127,7 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
         mMapView.setShowCurrentLocationMarker(false);
     }
 
-    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
-        // 현재 위치(position)에 해당하는 데이터를 가져와서 holder에 표시
-        ListLayout currentItem = itemList.get(position);
 
-        // holder에 데이터 표시하는 코드 ...
-
-        // 클릭 이벤트 리스너 설정
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 클릭 이벤트 처리
-                // 여기에 클릭 시 수행되어야 하는 동작을 추가
-            }
-        });
-    }
 
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
@@ -167,12 +153,13 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
                             String restaurantName = restaurant.getPlace_name();
 
                             ListLayout item = new ListLayout(
+                                    restaurant.getPlace_name(),
                                     restaurant.getCategory_name(),
-                                    restaurant.getRoad_address_name(),
                                     restaurant.getAddress_name(),
                                     latitude,
                                     longitude
                             );
+
                             itemList.add(item);
 
                             // DaumMap을 업데이트하는 로직을 추가하세요.
@@ -264,7 +251,7 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
             if (check_result) {
                 Log.d("@@@", "start");
                 //위치 값을 가져올 수 있음
-                mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+                mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
             } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
 
@@ -380,5 +367,9 @@ public class LocalCafeActivity extends AppCompatActivity implements MapView.Curr
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
+    // 거리를 계산하는 메서드
+
+
 
 }

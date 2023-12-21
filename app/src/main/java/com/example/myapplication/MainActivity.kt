@@ -24,23 +24,11 @@ public class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val button : Button = findViewById(R.id.logout_button)
-        button.setOnClickListener {
-            UserApiClient.instance.logout { error ->
-                if (error != null) {
-                    Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
-                }
-                else {
-                    Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
-                }
-            }
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
+
 
         val button2 : Button = findViewById(R.id.kakaoMap)
         button2.setOnClickListener {
-            val kakaointent = Intent(this, DaumMapActivity::class.java)
+            val kakaointent = Intent(this, SearchActivity::class.java)
             startActivity(kakaointent)
         }
 
@@ -62,7 +50,7 @@ public class MainActivity : AppCompatActivity() {
         }
         val circleinlocal : Button = findViewById(R.id.circleinlocal)
         circleinlocal.setOnClickListener {
-            val circleinlocalintent = Intent(this, SearchActivity::class.java)
+            val circleinlocalintent = Intent(this, KakaoMapView::class.java)
             startActivity(circleinlocalintent)
         }
         val goingcafebtn : Button = findViewById(R.id.goingcafe)

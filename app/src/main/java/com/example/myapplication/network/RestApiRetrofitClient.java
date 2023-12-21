@@ -17,7 +17,18 @@ public class RestApiRetrofitClient {
         return retrofit.create(DaumRest.class);
     }
 
+
     public static String getBaseUrl() {
         return BASE_URL;
+    }
+
+    // Walking Route를 호출하는 메서드
+    public static DaumRest createWalkingRoute() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(DaumRest.class);
     }
 }

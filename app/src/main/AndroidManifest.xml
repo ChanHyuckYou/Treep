@@ -36,8 +36,10 @@
 
 
 
+
+
         <activity
-            android:name=".LoginActivity"
+            android:name=".GoogleDirectionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,6 +69,8 @@
         <activity android:name=".DaumMapActivity"/>
         <activity android:name="LocalCafeActivity"/>
 <!--        <activity android:name=".kakao.KakaoActivity"/>-->
+        <activity android:name=".KakaoMapActivity"/>
+        <activity android:name=".KakaoMapView"/>
 
     </application>
 

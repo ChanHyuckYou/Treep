@@ -137,11 +137,19 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean cancel = false;
         View focusView = null;
+        //어드민 로그인시 유효성검사 안함
+        if ("admin".equals(email) && "12345678".equals(password)) {
+            showProgress(false);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Toast.makeText(LoginActivity.this, "admin계정으로 접속합니다.",Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+            return;
+        }
 
         // 패스워드의 유효성 검사
         if (password.isEmpty()) {
-            mEmailView.setError("비밀번호를 입력해주세요.");
-            focusView = mEmailView;
+            mPasswordView.setError("비밀번호를 입력해주세요.");
+            focusView = mPasswordView;
             cancel = true;
         } else if (!isPasswordValid(password)) {
             mPasswordView.setError("6자 이상의 비밀번호를 입력해주세요.");

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -27,7 +28,8 @@ import android.Manifest;
 import com.example.myapplication.kakao.ListAdapter;
 import com.example.myapplication.kakao.ListLayout;
 import com.example.myapplication.network.DaumRest;
-import com.example.myapplication.network.KaKaoLocalRest;
+import com.example.myapplication.network.RestApiRetrofitClient;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
     private MapView mMapView;
 
     private final String query = "음식점";
-    private final int radius = 500;
+    private final int radius = 3000;
 
 
 
@@ -67,7 +69,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
 
 
     public NearbyRestaurantsActivity() {
-        KaKaoLocalRest restClient = new KaKaoLocalRest();
+        RestApiRetrofitClient restClient = new RestApiRetrofitClient();
         this.daumRestService = restClient.create();
         this.itemList = new ArrayList<>();
     }
@@ -76,6 +78,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daum);
+
 
 
 
@@ -90,9 +93,9 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
         itemList = new ArrayList<>();  // itemList을 적절한 데이터로 초기화
         adapter = new ListAdapter(itemList);
         recyclerView.setAdapter(adapter);
-        KaKaoLocalRest.create();
+        RestApiRetrofitClient.create();
 
-        onCurrentLocationUpdate(mMapView, mMapView.getMapCenterPoint(), 0f);
+
 
 
 
@@ -100,10 +103,17 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
 
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
+            onCurrentLocationUpdate(mMapView, mMapView.getMapCenterPoint(), 0f);
         } else {
             checkRunTimePermission();
 
         }
+        adapter.setItemClickListener(new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                // 클릭 이벤트 무시
+            }
+        });
 
     }
 
@@ -141,8 +151,8 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
                             String restaurantName = restaurant.getPlace_name();
 
                             ListLayout item = new ListLayout(
+                                    restaurant.getPlace_name(),
                                     restaurant.getCategory_name(),
-                                    restaurant.getRoad_address_name(),
                                     restaurant.getAddress_name(),
                                     latitude,
                                     longitude
@@ -198,7 +208,6 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
         mapReverseGeoCoder.toString();
         onFinishReverseGeoCoding(s);
     }
-
 
     public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
         onFinishReverseGeoCoding("Fail");
@@ -301,7 +310,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
 
 
     //여기부터는 GPS 활성화를 위한 메소드들
-    private void showDialogForLocationServiceSetting() {
+    public void showDialogForLocationServiceSetting() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(NearbyRestaurantsActivity.this);
         builder.setTitle("위치 서비스 비활성화");
@@ -327,7 +336,7 @@ public class NearbyRestaurantsActivity extends AppCompatActivity implements MapV
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
